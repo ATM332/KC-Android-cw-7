@@ -1,6 +1,8 @@
 package com.example.cw7;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,6 +43,35 @@ public class ItemAdapter extends ArrayAdapter<Items> {
         artistName.setText(currentpainting.getItemArtist());
         price.setText(String.valueOf(currentpainting.getItemPrice()));
         painting.setImageResource(currentpainting.getItemImage());
+
+        ImageView delete = v.findViewById(R.id.delete);
+
+        delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog.Builder dialog = new AlertDialog.Builder(getContext());
+                dialog.setCancelable(false);
+                dialog.setTitle("Dialog on Android");
+                dialog.setMessage("Are you sure you want to delete this entry?" );
+                dialog.setPositiveButton("Delete", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int id) {
+                                itemsList.remove(position);
+                                notifyDataSetChanged();
+                            }
+                        })
+                        .setNegativeButton("Cancel ", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                //Action for "Cancel".
+                            }
+                        });
+
+                final AlertDialog alert = dialog.create();
+                alert.show();
+
+            }
+        });
 
 
 

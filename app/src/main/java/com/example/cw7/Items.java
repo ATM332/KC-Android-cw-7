@@ -1,17 +1,21 @@
 package com.example.cw7;
 
-public class Items {
+import java.io.Serializable;
+
+public class Items implements Serializable {
 
     private String itemName;
     private String itemArtist;
     private int itemImage;
     private double itemPrice;
+    private String itemDescription;
 
-    public Items(String itemName, String itemArtist, int itemImage, double itemPrice) {
+    public Items(String itemName, String itemArtist, int itemImage, double itemPrice, String itemDescription) {
         this.itemName = itemName;
         this.itemArtist = itemArtist;
         this.itemImage = itemImage;
         this.itemPrice = itemPrice;
+        this.itemDescription = itemDescription;
     }
 
     public String getItemName() {
@@ -44,5 +48,13 @@ public class Items {
 
     public void setItemPrice(double itemPrice) {
         this.itemPrice = itemPrice;
+    }
+
+    public String getItemDescription() {
+        return itemDescription;
+    }
+
+    public void setItemDescription(String itemDescription) {
+        this.itemDescription = itemDescription;
     }
 }
